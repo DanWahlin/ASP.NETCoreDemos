@@ -1,0 +1,14 @@
+﻿@model UsingDependencyInjection.ViewModels.DIViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1>Dependency Injection Demo</h1>
+<h2>Calculator - Singleton so only one instance on server</h2>
+Calculator Result: @Model.CalculatorResult
+<br /><br />
+<h2>Transient - Created each time they're injected</h2>
+2 injected into controller. Are they the same instance? @Model.TransientsEqual
+<br /><br />
+<h2>Scoped - Created once per request and then injected</h2>
+2 injected into controller. Are they the same instance? @Model.ScopedEqual

@@ -1,0 +1,24 @@
+*.iml
+.idea/
+
+### OSX template
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+node_modules
+!tools/typings/
+tools/typings/*
+!tools/typings/tsd.d.ts
+!tools/typings/expenseApp.d.ts
+**/bower_packages
+
+# all generated JS except a potential "lib" folder
+src/wwwroot/lib
+
+artifacts
+.vs
+*.log
+bin
+obj
