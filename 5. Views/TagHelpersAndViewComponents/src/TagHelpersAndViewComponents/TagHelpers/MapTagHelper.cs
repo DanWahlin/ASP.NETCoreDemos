@@ -7,7 +7,7 @@ using System.Text;
 
 namespace TagHelpersAndViewComponents.TagHelpers
 {
-    [TargetElement("map")]
+    [HtmlTargetElement("map")]
     public class MapTagHelper : TagHelper
     {
         [HtmlAttributeName("height")]
@@ -66,7 +66,7 @@ namespace TagHelpersAndViewComponents.TagHelpers
                 </script>");
             sb.Append("<script src='http://maps.google.com/maps/api/js?sensor=false'></script>");
 
-            output.Content.Append(sb.ToString());
+            output.Content.SetContent(sb.ToString());
             base.Process(context, output);
         }
     }

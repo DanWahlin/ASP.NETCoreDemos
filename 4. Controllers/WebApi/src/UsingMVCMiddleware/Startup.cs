@@ -9,6 +9,7 @@ using System.Linq;
 using WebApi.Filters;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Framework.Logging;
+using Microsoft.AspNet.Mvc.Formatters;
 
 namespace WebApi
 {
@@ -40,7 +41,7 @@ namespace WebApi
 
             if (env.IsDevelopment())
             {
-                app.UseErrorPage();
+                app.UseDeveloperExceptionPage();
             }
 
             app.UseStaticFiles();

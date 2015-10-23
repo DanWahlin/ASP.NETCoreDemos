@@ -27,10 +27,8 @@ namespace UsingMVCMiddleware
 
             app.Use(async (context, next) =>
             {
-                await Task.Run(() => {
-                    Console.WriteLine("Custom middleware logs request: " + context.Request.Path);
-                    next();
-                });
+                Console.WriteLine("Custom middleware logs request: " + context.Request.Path);
+                await next();
             });
 
             app.UseMvc();

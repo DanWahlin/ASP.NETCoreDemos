@@ -8,6 +8,7 @@ using Microsoft.AspNet.Mvc;
 using System.Linq;
 using ConfiguringServices.Filters;
 using Microsoft.Framework.Logging;
+using Microsoft.AspNet.Mvc.Formatters;
 
 namespace ConfiguringServices
 {

@@ -32,7 +32,7 @@ namespace UsingMapWithMiddleware
             app.Use(async (context, next) =>
             {
                 Console.WriteLine("Standard Middleware Called");
-                next();
+                await next();
             });
 
             app.Map("/customers", HandleCustomersRoute);
@@ -44,6 +44,7 @@ namespace UsingMapWithMiddleware
         {
             app.Run(async context  =>
             {
+                await context.Response.WriteAsync("Hit /customers map middleware");
                 Console.WriteLine("/Customers Map to Middleware Successful");
             });
         }
