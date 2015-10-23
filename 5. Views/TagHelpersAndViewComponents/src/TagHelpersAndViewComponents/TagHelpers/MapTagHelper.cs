@@ -66,7 +66,8 @@ namespace TagHelpersAndViewComponents.TagHelpers
                 </script>");
             sb.Append("<script src='http://maps.google.com/maps/api/js?sensor=false'></script>");
 
-            output.Content.SetContent(sb.ToString());
+            //AppendEncoded changing to AppendHtml in final API
+            output.Content.AppendEncoded(sb.ToString());
             base.Process(context, output);
         }
     }
