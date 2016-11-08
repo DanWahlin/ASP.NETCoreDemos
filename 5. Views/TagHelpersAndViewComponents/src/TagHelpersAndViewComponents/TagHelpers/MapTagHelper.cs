@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Razor.Runtime.TagHelpers;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 using System.Text;
 
 namespace TagHelpersAndViewComponents.TagHelpers
@@ -66,8 +63,7 @@ namespace TagHelpersAndViewComponents.TagHelpers
                 </script>");
             sb.Append("<script src='http://maps.google.com/maps/api/js?sensor=false'></script>");
 
-            //AppendEncoded changing to AppendHtml in final API
-            output.Content.AppendEncoded(sb.ToString());
+            output.Content.AppendHtml(sb.ToString());
             base.Process(context, output);
         }
     }

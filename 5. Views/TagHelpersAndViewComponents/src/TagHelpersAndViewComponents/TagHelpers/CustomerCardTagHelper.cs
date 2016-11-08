@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Razor.Runtime.TagHelpers;
-using System.Text;
-using Microsoft.AspNet.Mvc.Rendering;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace TagHelpersAndViewComponents.TagHelpers
 {
@@ -20,8 +15,7 @@ namespace TagHelpersAndViewComponents.TagHelpers
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             output.TagName = "div";
-            //AppendEncoded changing to AppendHtml in final API
-            output.Content.AppendEncoded($"<h4>CustomerCard Tag Helper</h4><div>{FirstName} {LastName}</div>");
+            output.Content.AppendHtml($"<h4>CustomerCard Tag Helper</h4><div>{FirstName} {LastName}</div>");
         }
     }
 }

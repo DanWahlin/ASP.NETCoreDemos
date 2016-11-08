@@ -1,16 +1,27 @@
 {
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:53502/",
+      "sslPort": 0
+    }
+  },
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNET_ENV": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "web": {
-      "commandName": "web",
+    "ConfiguringServices": {
+      "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:5000/api/dataservice/customers/2"
+      "launchUrl": "http://localhost:5000/api/dataservice/customers/2",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
     }
   }
 }

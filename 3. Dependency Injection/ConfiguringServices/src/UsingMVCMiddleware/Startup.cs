@@ -1,35 +1,54 @@
 ﻿using System;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Builder;
-using Microsoft.Framework.DependencyInjection;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using Microsoft.AspNet.Mvc;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using ConfiguringServices.Filters;
-using Microsoft.Framework.Logging;
-using Microsoft.AspNet.Mvc.Formatters;
+using Newtonsoft.Json.Serialization;
+using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace ConfiguringServices
 {
     public class Startup
     {
-        public Startup()
+        public Startup(IHostingEnvironment env)
         {
             Console.WriteLine("Listening on port 5000");
         }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(options =>
             {
+                //Add custom exception filter
                 options.Filters.Add(typeof(CustomExceptionFilter));
-
-                options.OutputFormatters
-                       .OfType<JsonOutputFormatter>()
-                       .First()
-                       .SerializerSettings
-                       .ContractResolver = new CamelCasePropertyNamesContractResolver();
+                
+                //Convert null responses from Action to a 204
+                options.OutputFormatters.Add(new HttpNoContentOutputFormatter());
             });
+
+            //Remove default Camel Casing for JSON
+            //Option 1:
+            //.AddJsonOptions(opt =>
+            //{
+            //    var resolver = opt.SerializerSettings.ContractResolver;
+            //    if (resolver != null)
+            //    {
+            //        var res = resolver as DefaultContractResolver;
+            //        res.NamingStrategy = null;
+            //    }
+            //});
+
+            //Option 2:
+            services.AddMvcCore().AddJsonFormatters(jsonFormatter =>
+            {
+                jsonFormatter.ContractResolver = new DefaultContractResolver();
+            });
+
         }
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)

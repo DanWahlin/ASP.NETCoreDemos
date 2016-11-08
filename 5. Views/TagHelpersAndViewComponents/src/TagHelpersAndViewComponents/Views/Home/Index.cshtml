@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Tag Helpers and ViewComponent Example";
 }
+
 <h4>Map Tag Helper</h4>
 <map name="mapTagHelper" height="300" width="600"></map>
 
@@ -12,6 +13,7 @@
 
 <br />
 <h4>Customers View Component</h4>
-@Component.Invoke("Customers", 10) 
+
+@await Component.InvokeAsync("Customers", new { max = 10 }) 
 
 

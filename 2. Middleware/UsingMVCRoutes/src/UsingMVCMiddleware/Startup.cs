@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Http;
-using Microsoft.Framework.DependencyInjection;
-using Microsoft.AspNet.Hosting;
-using Microsoft.Dnx.Runtime;
-using Microsoft.AspNet.Diagnostics;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
-namespace UsingMVCMiddleware
+namespace UsingMVCRoutes
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
+        public Startup(IHostingEnvironment env)
         {
             Console.WriteLine("Listening on port 5000");
         }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
@@ -26,7 +26,7 @@ namespace UsingMVCMiddleware
         {
             app.UseStaticFiles();
 
-            if (string.Equals(env.EnvironmentName, "Development", StringComparison.OrdinalIgnoreCase))
+            if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
             }

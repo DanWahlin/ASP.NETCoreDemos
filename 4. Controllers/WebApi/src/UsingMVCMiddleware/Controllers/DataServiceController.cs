@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using WebApi.Models;
 
 namespace WebApi.Controllers
@@ -10,17 +10,6 @@ namespace WebApi.Controllers
     [Route("api/[controller]")]
     public class DataServiceController : Controller
     {
-        [HttpGet("customers/{id:int}")]
-        public Customer Customers(int id)
-        {
-            return new Customer
-            {
-                Id = id,
-                FirstName = "John",
-                LastName = "Doe"
-            };
-        }
-
         [HttpGet("customers")]
         public IActionResult Customers()
         {
@@ -31,6 +20,18 @@ namespace WebApi.Controllers
             };
 
             return Ok(custs);
+        }
+
+        [HttpGet("customers/{id:int}")]
+        public IActionResult Customers(int id)
+        {
+            var customer = new Customer
+            {
+                Id = id,
+                FirstName = "John",
+                LastName = "Doe"
+            };
+            return Ok(customer);
         }
     }
 }

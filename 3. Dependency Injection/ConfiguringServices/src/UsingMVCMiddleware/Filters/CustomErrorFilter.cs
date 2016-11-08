@@ -1,23 +1,25 @@
-﻿using Microsoft.AspNet.Mvc;
-using Microsoft.AspNet.Mvc.Filters;
-using Microsoft.Framework.Logging;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Logging;
 using System;
 
 namespace ConfiguringServices.Filters
 {
     public class CustomExceptionFilter : ActionFilterAttribute, IExceptionFilter
     {
-        ILogger _Logger;
+        ILogger _logger;
+
         public CustomExceptionFilter(ILoggerFactory loggerFactory)
         {
-            _Logger = loggerFactory.CreateLogger("CustomExceptionFilter");
+            _logger = loggerFactory.CreateLogger("CustomExceptionFilter");
         }
+
         public void OnException(ExceptionContext expContext)
         {
             //Log exception
             if (expContext.Exception != null)
             {
-                _Logger.LogError($"Error in {expContext.HttpContext.Request.Path}: {expContext.Exception.Message}");
+                _logger.LogError($"Error in {expContext.HttpContext.Request.Path}: {expContext.Exception.Message}");
             }
         }
     }

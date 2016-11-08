@@ -1,9 +1,15 @@
 ﻿using System;
-using Microsoft.AspNet.Builder;
-using Microsoft.Framework.DependencyInjection;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using BizRules;
 
-namespace UsingMVCMiddleware
+namespace UsingDependencyInjection
 {
     //DI article: http://blogs.msdn.com/b/webdev/archive/2014/06/17/dependency-injection-in-asp-net-vnext.aspx
     public class Startup

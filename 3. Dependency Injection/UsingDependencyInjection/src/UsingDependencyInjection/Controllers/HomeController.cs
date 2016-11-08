@@ -1,5 +1,8 @@
 ﻿using System;
-using Microsoft.AspNet.Mvc;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using BizRules;
 using UsingDependencyInjection.ViewModels;
 
