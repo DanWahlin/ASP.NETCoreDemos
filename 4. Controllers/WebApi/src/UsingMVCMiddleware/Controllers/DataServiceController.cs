@@ -7,7 +7,7 @@ using WebApi.Models;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]")] 
     public class DataServiceController : Controller
     {
         [HttpGet("customers")]
