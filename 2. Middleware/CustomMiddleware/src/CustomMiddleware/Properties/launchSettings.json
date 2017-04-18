@@ -3,8 +3,16 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:50787/",
+      "applicationUrl": "http://localhost:50547/",
       "sslPort": 0
+    }
+  },
+  "CustomMiddleware": {
+    "commandName": "Project",
+    "launchBrowser": true,
+    "launchUrl": "http://localhost:5000",
+    "environmentVariables": {
+      "ASPNETCORE_ENVIRONMENT": "Development"
     }
   },
   "profiles": {
@@ -15,13 +23,8 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "UsingMVCMiddleware": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "http://localhost:5000",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+    "CustomMiddleware": {
+      "commandName": "Project"
     }
   }
 }

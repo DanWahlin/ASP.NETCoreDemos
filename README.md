@@ -1,3 +1,3 @@
 # ASP.NET Core Demos
 
-Several demos showing new features in ASP.NET Core. 
+Demos showing key ASP.NET features.
