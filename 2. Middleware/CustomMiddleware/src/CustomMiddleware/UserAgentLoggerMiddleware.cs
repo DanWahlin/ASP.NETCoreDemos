@@ -10,7 +10,7 @@ namespace CustomMiddleware
         private readonly RequestDelegate _next;
         private readonly ILogger _logger;
 
-        public UserAgentLoggerMiddleware(RequestDelegate next, ILoggerFactory loggerFactory)
+        public UserAgentLoggerMiddleware(ILoggerFactory loggerFactory, RequestDelegate next)
         {
             _next = next;
             _logger = loggerFactory.CreateLogger<UserAgentLoggerMiddleware>();

@@ -13,14 +13,13 @@ namespace UsingMapWithMiddleware
 {
     public class Startup
     {
-        //#### 
-        // Run using "UsingMapWithMiddleware" command so console is displayed!
-        // Navigate to http://localhost:5000/customers
-        //####
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            Console.WriteLine("Listening on port 5000");
+            Console.WriteLine("Mapping custom route: http://locahost:8000/customers");
+            Configuration = configuration;
         }
+
+        public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {

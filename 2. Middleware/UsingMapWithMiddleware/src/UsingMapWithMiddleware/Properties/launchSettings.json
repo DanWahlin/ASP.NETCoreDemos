@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:50628/customers",
+      "applicationUrl": "http://localhost:5000",
       "sslPort": 0
     }
   },
@@ -18,10 +18,10 @@
     "UsingMapWithMiddleware": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:5000/customers",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "http://localhost:8000"
     }
   }
 }

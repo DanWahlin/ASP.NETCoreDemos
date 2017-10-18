@@ -6,16 +6,20 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http;
 
 namespace UsingMVCRoutes
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            Console.WriteLine("Listening on port 5000");
+            Configuration = configuration;
         }
+
+        public IConfiguration Configuration { get; }
+
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -32,9 +36,21 @@ namespace UsingMVCRoutes
             }
             else
             {
-                // Add Error handling middleware which catches all application specific errors and
-                // send the request to the following path or controller action.
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler(
+                    options => {
+                        options.Run(async context =>
+                        {
+                            context.Response.StatusCode = (int)StatusCodes.Status500InternalServerError;
+                            context.Response.ContentType = "text/html";
+                            var ex = context.Features.Get<IExceptionHandlerFeature>();
+                            if (ex != null)
+                            {
+                                var err = $"<h1>Server Error: {ex.Error.Message}</h1>{ex.Error.StackTrace }";
+                                await context.Response.WriteAsync(err).ConfigureAwait(false);
+                            }
+                        });
+                    }
+                );
             }
 
             app.UseMvcWithDefaultRoute();

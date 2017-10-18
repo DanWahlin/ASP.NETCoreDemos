@@ -12,14 +12,13 @@ namespace UsingMVCMiddleware
 {
     public class Startup
     {
-        //#### 
-        // Run using "UsingMVCMiddleware" command so console is displayed!
-        // Navigate to http://localhost:5000
-        //####
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            Console.WriteLine("Listening on port 5000");
+            Configuration = configuration;
         }
+
+        public IConfiguration Configuration { get; }
+
 
         public void ConfigureServices(IServiceCollection services)
         {

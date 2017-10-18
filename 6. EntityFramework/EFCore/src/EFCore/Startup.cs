@@ -14,34 +14,24 @@ namespace EFCore
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-
-            if (env.IsDevelopment())
-            {
-                // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
-                builder.AddApplicationInsightsSettings(developerMode: true);
-            }
-            Configuration = builder.Build();
+            Configuration = configuration;
         }
 
-        public IConfigurationRoot Configuration { get; }
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-            services.AddApplicationInsightsTelemetry(Configuration);
+            // services.AddDbContext<MoviesDbContext>(options =>
+            // {
+            //     options.UseSqlServer(Configuration.GetConnectionString("Movies"));
+            // });
 
-            //Configuring DbContext: https://docs.microsoft.com/en-us/ef/core/miscellaneous/configuring-dbcontext
-            services.AddDbContext<MoviesDbContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("Movies"));
+            //Add SqLite support
+            services.AddDbContext<MoviesDbContext>(options => {
+                options.UseSqlite(Configuration.GetConnectionString("MoviesSqlite"));
             });
 
             services.AddMvc();
@@ -52,15 +42,9 @@ namespace EFCore
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, 
-            IHostingEnvironment env, 
-            ILoggerFactory loggerFactory,
+            IHostingEnvironment env,
             Seeder seeder)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
-            app.UseApplicationInsightsRequestTelemetry();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -70,9 +54,7 @@ namespace EFCore
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
-            app.UseApplicationInsightsExceptionTelemetry();
-
+            
             app.UseStaticFiles();
 
             app.UseMvc(routes =>

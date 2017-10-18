@@ -12,10 +12,13 @@ namespace WebApi
 {
     public class Startup
     {
-        public Startup()
+        public Startup(IConfiguration configuration)
         {
-            Console.WriteLine("Listening on port 5000");
+            Configuration = configuration;
         }
+
+        public IConfiguration Configuration { get; }
+
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -26,10 +29,8 @@ namespace WebApi
         }
 
         public void Configure(IApplicationBuilder app, 
-            IHostingEnvironment env,
-            ILoggerFactory loggerFactory)
+            IHostingEnvironment env)
         {
-            loggerFactory.AddConsole();
 
             if (env.IsDevelopment())
             {

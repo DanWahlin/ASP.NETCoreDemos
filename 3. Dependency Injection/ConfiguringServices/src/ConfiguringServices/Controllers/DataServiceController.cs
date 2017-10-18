@@ -30,7 +30,7 @@ namespace ConfiguringServices.Controllers
                 throw new InvalidOperationException();
                 //return Ok();
             }
-            catch (Exception exp)
+            catch
             {
                 throw;
                 //return HttpNotFound();

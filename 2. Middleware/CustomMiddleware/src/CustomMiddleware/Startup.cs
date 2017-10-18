@@ -12,27 +12,28 @@ namespace CustomMiddleware
 {
     public class Startup
     {
-        //#### 
-        // Run using "CustomMiddleware" command so console is displayed!
-        // Navigate to http://localhost:5000
-        //####
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            Console.WriteLine("Listening on port 5000");
+            Configuration = configuration;
         }
+
+        public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
         }
 
-        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app)
         {
-            loggerFactory.AddConsole(minLevel: LogLevel.Information);
-
-            //app.UseMiddleware<UserAgentLoggerMiddleware>();
-
-            //OR
+            app.Use(async (context, next) =>
+            {
+                //This is called on the request to the server
+                Console.WriteLine("request made to server");
+                await next();
+                Console.WriteLine("response made from server");
+                //This is called on the response to the browser
+            });
 
             app.UseUserAgentLogger();
 
