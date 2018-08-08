@@ -1,0 +1,21 @@
+﻿@model List<EFCore.Models.Distributor>
+@{
+    ViewData["Title"] = "Distributors";
+}
+
+<h1>Distributors</h1>
+<div class="container">
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+        </tr>
+        @foreach (var dist in Model)
+        {
+            <tr>
+                <td>@dist.Name</td>
+            </tr>
+        }
+    </table>
+</div>
+
+<a asp-controller="home">View Movies</a>

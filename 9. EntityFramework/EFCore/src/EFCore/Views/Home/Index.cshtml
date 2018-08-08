@@ -1,0 +1,26 @@
+﻿@model List<EFCore.Models.Movie>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Movies</h1>
+<div class="container">
+    <table class="table table-striped">
+        <tr>
+            <th>Title</th>
+            <th>Director</th>
+            <th>Distributor</th>
+        </tr>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Title</td>
+                <td>@movie.Director</td>
+                <td>@movie.Distributor?.Name</td>
+            </tr>
+        }
+    </table>
+</div>
+
+<br />
+<a asp-controller="distributors">View Distributors</a>

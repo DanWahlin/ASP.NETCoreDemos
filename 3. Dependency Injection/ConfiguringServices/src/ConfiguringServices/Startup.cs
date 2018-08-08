@@ -17,6 +17,7 @@ namespace ConfiguringServices
     {
         public Startup(IConfiguration configuration)
         {
+            Console.WriteLine("Visit: http://localhost:8000/api/dataservice/customers/1");
             Configuration = configuration;
         }
 
@@ -33,7 +34,7 @@ namespace ConfiguringServices
                 options.OutputFormatters.Add(new HttpNoContentOutputFormatter());
             });
 
-            //Remove default Camel Casing for JSON
+            // Demonstrate removing default Camel Casing for JSON for a client
             services.AddMvcCore().AddJsonFormatters(jsonFormatter =>
             {
                 jsonFormatter.ContractResolver = new DefaultContractResolver();

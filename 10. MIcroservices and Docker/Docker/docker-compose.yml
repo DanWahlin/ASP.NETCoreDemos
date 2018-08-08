@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  customers.api:
+    image: customers.api
+    build:
+      context: ./Services/Customers.API
+      dockerfile: Dockerfile
+
+  lookup.api:
+    image: lookup.api
+    build:
+      context: ./Services/Lookup.API
+      dockerfile: Dockerfile
+
+  monolithtomicroservices:
+    image: monolithtomicroservices
+    build:
+      context: ./MonolithToMicroservices
+      dockerfile: Dockerfile

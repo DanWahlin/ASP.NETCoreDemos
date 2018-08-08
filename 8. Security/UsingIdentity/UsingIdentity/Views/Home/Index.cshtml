@@ -1,0 +1,23 @@
+﻿@using System.Security.Claims;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (!User.Identity.IsAuthenticated)
+{
+    <h1>Hello there unauthenticated user!</h1>
+}
+else
+{
+    <h1>
+        Hello @User.Identity.Name
+    </h1>
+
+    <h2>Claims:</h2>
+    <ul>
+        @foreach (var claim in User.Claims)
+        {
+            <li>@claim.Type: @claim.Value</li>
+        }
+    </ul>
+}
