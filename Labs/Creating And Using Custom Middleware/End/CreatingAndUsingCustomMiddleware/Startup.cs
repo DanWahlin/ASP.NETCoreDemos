@@ -29,11 +29,14 @@ namespace CreatingAndUsingCustomMiddleware
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILogger<Startup> logger)
         {            
-            app.Use(async (context, next) =>
-            {
-                logger.LogDebug("Testing my custom middleware!");
-                await next();
-            });
+            // app.Use(async (context, next) =>
+            // {
+            //     logger.LogDebug("Testing my custom request middleware!");
+            //     await next();
+            //     logger.LogDebug("Testing my custom response middleware!");
+            // });
+
+            app.UseCustomMiddleware();
 
             if (env.IsDevelopment())
             {
