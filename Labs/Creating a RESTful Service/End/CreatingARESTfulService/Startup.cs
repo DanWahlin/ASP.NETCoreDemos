@@ -37,7 +37,7 @@ namespace CreatingARESTfulService
                         .AllowAnyHeader();
             }));
 
-            services.AddCors(o => o.AddPolicy("AllowSpecific", options => 
+            services.AddCors(o => o.AddPolicy("AllowSpecificPolicy", options => 
                     options.WithOrigins("http://localhost:4200")
                             .WithMethods("GET", "POST", "PUT", "PATCH", "DELETE")
                             .WithHeaders("accept", "content-type", "origin", "X-Inline-Count")));
