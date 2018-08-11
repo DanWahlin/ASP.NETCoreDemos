@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CreatingARESTfulService.Models
+namespace UsingWebAPI.Models
 {
     public class Customer
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace CreatingARESTfulService
+namespace UsingWebAPI
 {
     public class Program
     {

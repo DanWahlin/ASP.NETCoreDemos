@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using CreatingARESTfulService.Models;
+using UsingWebAPI.Models;
 
-namespace CreatingARESTfulService.Controllers
+namespace UsingWebAPI.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
