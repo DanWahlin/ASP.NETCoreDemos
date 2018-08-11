@@ -14,7 +14,7 @@ namespace CreatingARESTfulService.Controllers
         [HttpGet]
         public Customer Get()
         {
-            return new Customer { Id = 1, Name = "Davey Jones", City = "Phoenix" };
+            return new Customer { Id = 1, FirstName = "Davey", LastName = "Jones", City = "Atlantis" };
         }
 
         // GET api/values/5
@@ -38,8 +38,9 @@ namespace CreatingARESTfulService.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public int Delete(int id)
         {
+            return id;
         }
     }
 }
