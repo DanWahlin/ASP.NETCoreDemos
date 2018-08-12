@@ -30,6 +30,8 @@ namespace UsingEntityFrameworkCore
 
             // Add framework services.
             services.AddMvc();
+
+            services.AddScoped<ICustomersRepository, CustomersRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

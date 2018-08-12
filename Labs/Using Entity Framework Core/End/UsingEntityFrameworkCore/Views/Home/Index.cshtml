@@ -1,8 +1,22 @@
-﻿@model UsingEntityFrameworkCore.Models.Customer
+﻿@model UsingEntityFrameworkCore.Models.Customer 
+@* @model IEnumerable<UsingEntityFrameworkCore.Models.Customer> *@
 @{
     ViewData["Title"] = "Home Page";
 }
+
+
 <h1>Customer Details</h1>
 @Model.Name  @Model.City
+
+
+@*
+<h1>Customers</h1>
+<ul>
+    @foreach (var cust in Model) {
+        <li>@cust.Name @cust.City</li>
+    }
+</ul>
+*@
+
 
 
