@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-namespace Labs
+
+namespace UsingOAuth
 {
     public class Program
     {

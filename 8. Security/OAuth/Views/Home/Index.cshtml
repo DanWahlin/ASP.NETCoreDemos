@@ -1,0 +1,38 @@
+﻿@model UsingOAuth.Models.OAuthUser
+@{
+    ViewData["Title"] = "Using OAuth";
+}
+
+@if (Model != null)
+{
+    <div>
+        <h1>User Info</h1>
+        Name: @Model.Name
+        <br />
+        Access Token: @Model.AccessToken
+        <br /><br />
+        <a onclick="getCustomers()" class="btn btn-default">Call Web API</a>
+        <br /><br />
+        <div id="customer"></div>
+    </div>
+}
+else 
+{
+    <br /><br />
+    <div>
+        <a asp-action="Login" asp-controller="Authentication" class="btn btn-default">Github Log In</a>
+    </div>
+}
+@section Scripts {
+    <script>
+        function getCustomers() {
+            $.get('/api/customers').then(function(data) {
+                var customerDiv = $('#customer');
+                customerDiv.html('Name : ' + data.name);
+            });
+        }
+    </script>
+}
+
+
+

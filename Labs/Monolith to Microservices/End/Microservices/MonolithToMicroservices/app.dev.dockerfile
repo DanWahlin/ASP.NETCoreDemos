@@ -7,4 +7,4 @@ ENV ASPNETCORE_URLS=http://*:80
 
 WORKDIR /var/www/app
 
-CMD ["/bin/bash", "-c", "dotnet restore && dotnet watch run"]
+ENTRYPOINT ["/bin/bash", "-c", "dotnet restore && dotnet watch run"]
